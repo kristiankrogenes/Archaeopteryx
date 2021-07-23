@@ -1,19 +1,7 @@
-import logo from './archaeopteryx_img.jpg';
-import './App.css';
-import TestComponent from './components/TestComponent'; 
+import Routing from './components/Routing'; 
 
 function App() {
-  return (
-    <div className="App">
-      
-      <header className="App-header">
-        <h1>ARCHAEOPTERYX</h1>
-
-        <img src={logo} className="App-logo" alt="logo" />
-        <TestComponent />
-      </header>
-    </div>
-  );
+  return <Routing />;
 }
 
 export default App;
