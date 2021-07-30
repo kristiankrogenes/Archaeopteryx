@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('frontend.urls')),
     path('api-users/', views.UserView.as_view()),
+    path('api-scores/',views.RoundView.as_view())
 ]
