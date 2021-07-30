@@ -1,0 +1,57 @@
+<div>
+
+                <Button onClick={handleShow}>ADD ANIMAL</Button>
+
+                <Modal show={show} animation={false}>
+
+                    <Modal.Header>
+                        <Modal.Title>ADD NEW SCORE</Modal.Title>
+                    </Modal.Header>
+
+                    <Modal.Body>
+
+                        <Form>
+
+                            <Form.Group>
+                                <Form.Label>Score</Form.Label>
+                                <Form.Control
+                                    name="score" 
+                                    type="number"
+                                    onChange={handleChange}/>
+                            </Form.Group>
+
+                            <Form.Group>
+                                <Form.Label>Date</Form.Label>
+                                <Form.Control 
+                                    name="age" 
+                                    type="number"
+                                    onChange={handleChange}/>
+                            </Form.Group>
+
+                            <Form.Group>
+                                <Form.Label>Player</Form.Label>
+                                <Form.Control 
+                                    name="player" 
+                                    type="name" 
+                                    onChange={handleChange}/>
+                            </Form.Group>
+
+                            <Form.Group>
+                                <Form.Label>Course</Form.Label>
+                                <Form.Control
+                                    name="course"
+                                    type="name"
+                                    onChange={handleChange}/>
+                            </Form.Group>
+
+                        </Form> 
+          
+                    </Modal.Body>
+
+                    <Modal.Footer>
+                        <Button onClick={handleShow}>CLOSE</Button>
+                        {/* <Button onClick={addAnimal}>ADD</Button> */}
+                    </Modal.Footer>
+
+                </Modal>
+            </div> 

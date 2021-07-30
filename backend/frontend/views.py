@@ -1,10 +1,10 @@
 from django.shortcuts import render
-from .models import User, Round
+from .models import User, Round, Course
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import UserSerializer, RoundSerializer
+from .serializers import UserSerializer, RoundSerializer, CourseSerializer
 
 def index(request):
     return render(request, 'build/index.html')
@@ -27,4 +27,10 @@ class RoundView(APIView):
     def get(self, request, format=None):
         scores = Round.objects.all()
         serializer = RoundSerializer(scores, many=True)
+        return Response(serializer.data)
+
+class CourseView(APIView):
+    def get(self, request, format=None):
+        courses = Course.objects.all()
+        serializer = CourseSerializer(courses, many=True)
         return Response(serializer.data)
