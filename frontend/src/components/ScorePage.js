@@ -1,8 +1,8 @@
 
-function UserPage() {
+function ScorePage() {
     return (
         <p>This is the score page.</p>
     );
-  }
+}
   
-  export default UserPage;
+export default ScorePage;
