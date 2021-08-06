@@ -3,17 +3,17 @@ import { useState } from 'react';
 import axios from 'axios';
 
 
-function UserPage() {
+function ScorePage() {
 
     const [scoreList, setScoreList] = useState([]);
 
-  async function getUsers() {
+  async function getScores() {
     const scores = await axios.get('http://localhost:8000/api-scores/');
     setScoreList(scores.data);
   }
 
   useEffect( () => {
-    getUsers();
+    getScores();
   }, []);
   return (
     <div>
@@ -47,4 +47,4 @@ function UserPage() {
   );
   }
   
-  export default UserPage;
+  export default ScorePage;
