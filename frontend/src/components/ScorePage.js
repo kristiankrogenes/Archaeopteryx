@@ -192,4 +192,4 @@ function ScorePage() {
     );
 }
   
-export default ScorePage;
+  export default ScorePage;
