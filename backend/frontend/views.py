@@ -15,7 +15,7 @@ class UserView(APIView):
         users = User.objects.all()
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
-
+    
     # def post(self, request, format=None):
     #     serializer = AnimalSerializer(data=request.data)
     #     if serializer.is_valid():
@@ -28,6 +28,14 @@ class RoundView(APIView):
         scores = Round.objects.all()
         serializer = RoundSerializer(scores, many=True)
         return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = RoundSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class CourseView(APIView):
     def get(self, request, format=None):
