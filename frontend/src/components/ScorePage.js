@@ -4,6 +4,15 @@ import axios from 'axios';
 
 import Button from '@material-ui/core/Button';
 
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -95,34 +104,62 @@ function ScorePage() {
         setScore(event.target.value);
     };
 
-    return (
-        <div>
-            <div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>SCORE</th>
-                            <th>DATE</th>
-                            <th>PLAYER</th>
-                            <th>COURSE</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {scoreList.map(score => {
-                        return(
-                        <tr>
-                            <th>{score.id}</th>
-                            <th>{score.score}</th>
-                            <th>{score.date}</th>
-                            <th>{score.player}</th>
-                            <th>{score.course}</th>
+    const StyledTableCell = withStyles((theme) => ({
+        head: {
+            backgroundColor: theme.palette.common.black,
+            color: theme.palette.common.white,
+        },
+        body: {
+            fontSize: 14,
+        },
+    }))(TableCell);
 
-                        </tr>
-                        )
-                    })}
-                    </tbody>
-                </table>
+    const useStyles = makeStyles({
+        table: {
+            minWidth: 700,
+        }
+    });
+
+    const classes = useStyles();
+    
+    const tableStyle = {
+        width: 'fit-content',
+        margin: '40px'
+    }
+
+    const container = {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center', 
+    }
+
+    return (
+        <div style={container}>
+            <div style={tableStyle}>
+                <TableContainer component={Paper}>
+                    <Table className={classes.table} aria-label="customized table">
+                        <TableHead>
+                            <TableRow>
+                                <StyledTableCell>SCORE</StyledTableCell>
+                                <StyledTableCell>DATE</StyledTableCell>
+                                <StyledTableCell>PLAYER</StyledTableCell>
+                                <StyledTableCell>COURSE</StyledTableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {scoreList.map(score => {
+                                return(
+                                    <TableRow>
+                                        <StyledTableCell>{score.score}</StyledTableCell>
+                                        <StyledTableCell>{score.date}</StyledTableCell>
+                                        <StyledTableCell>{score.player}</StyledTableCell>
+                                        <StyledTableCell>{score.course}</StyledTableCell>
+                                    </TableRow>
+                                )
+                            })}
+                        </TableBody>
+                    </Table >
+                </TableContainer>
             </div>
 
             <div>
