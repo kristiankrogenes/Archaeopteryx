@@ -15,6 +15,7 @@ function Routing() {
         <Switch>
           <Route exact path="/" component={Main} />
           <Route exact path="/users" component={UserPage} />
+          <Route exact path="/users/adduser" component={UserPage} />
           <Route exact path="/scores" component={ScorePage} />
           <Route exact path="/courses" component={CoursePage} />
           <Route exact path="/login" component={LoginPage} />
