@@ -106,6 +106,7 @@ function ScorePage() {
                             <th>DATE</th>
                             <th>PLAYER</th>
                             <th>COURSE</th>
+                            <th>HCP SPILT TIL</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -117,6 +118,7 @@ function ScorePage() {
                             <th>{score.date}</th>
                             <th>{score.player}</th>
                             <th>{score.course}</th>
+                            <th>{score.score_hcp}</th>
 
                         </tr>
                         )
