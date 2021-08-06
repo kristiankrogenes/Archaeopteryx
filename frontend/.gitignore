@@ -24,3 +24,15 @@ yarn-error.log*
 
 __pycache__/
 *.py[cod]
+
+### Django
+*.log
+*.pot
+db.sqlite3
+**/**.sqlite3
+
+*.log
+*.pot
+*.pyc
+__pycache__
+media
