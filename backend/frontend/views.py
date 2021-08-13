@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import UserSerializer, RoundSerializer, CourseSerializer
 
-def index(request):
+def index(request, *args, **kwargs):
     return render(request, 'build/index.html')
 
 class UserView(APIView):

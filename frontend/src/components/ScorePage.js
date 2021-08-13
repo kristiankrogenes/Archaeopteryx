@@ -21,6 +21,8 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import MenuItem from '@material-ui/core/MenuItem';
 
+import '../static/css/main.css';
+
 
 function ScorePage() {
 
@@ -116,52 +118,45 @@ function ScorePage() {
 
     const useStyles = makeStyles({
         table: {
-            minWidth: 700,
+            minWidth: 1000,
+        }, 
+        tablecontainer: {
+            width: 'fit-content',
+            padding: '30px'
         }
     });
 
     const classes = useStyles();
-    
-    const tableStyle = {
-        width: 'fit-content',
-        margin: '40px'
-    }
-
-    const container = {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center', 
-    }
 
     return (
-        <div>
-            <div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>SCORE</th>
-                            <th>DATE</th>
-                            <th>PLAYER</th>
-                            <th>COURSE</th>
-                            <th>HCP SPILT TIL</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {scoreList.map(score => {
-                        return(
-                        <tr>
-                            <th>{score.id}</th>
-                            <th>{score.score}</th>
-                            <th>{score.date}</th>
-                            <th>{score.player}</th>
-                            <th>{score.course}</th>
-                            <th>{score.score_hcp}</th>
-                        </tr>
-                        )
-                    })}
-                    </tbody>
-                </table>
+        <div className="page-container">
+            <div className={classes.tablecontainer}>
+                <TableContainer component={Paper}>
+                    <Table className={classes.table} aria-label="customized table">
+                        <TableHead>
+                            <TableRow>
+                                <StyledTableCell>SCORE</StyledTableCell>
+                                <StyledTableCell>DATE</StyledTableCell>
+                                <StyledTableCell>PLAYER</StyledTableCell>
+                                <StyledTableCell>COURSE</StyledTableCell>
+                                <StyledTableCell>HCP PLAYED TO</StyledTableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {scoreList.map(score => {
+                                return(
+                                    <TableRow>
+                                        <StyledTableCell>{score.score}</StyledTableCell>
+                                        <StyledTableCell>{score.date}</StyledTableCell>
+                                        <StyledTableCell>{score.player}</StyledTableCell>
+                                        <StyledTableCell>{score.course}</StyledTableCell>
+                                        <StyledTableCell>{score.score_hcp}</StyledTableCell>
+                                    </TableRow>
+                                )
+                            })}
+                        </TableBody>
+                    </Table >
+                </TableContainer>
             </div>
 
             <div>
@@ -231,4 +226,4 @@ function ScorePage() {
     );
 }
   
-  export default ScorePage;
+export default ScorePage;

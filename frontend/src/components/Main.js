@@ -1,9 +1,9 @@
 import logo from '../static/image/archaeopteryx_img.jpg';
-import '../static/css/App.css';
+import '../static/css/main.css';
     
 function Main() {
     return (
-        <div className="App">
+        <div className="page-container">
             <img src={logo} className="App-logo" alt="logo" />
         </div>
     );

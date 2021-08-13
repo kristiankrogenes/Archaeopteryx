@@ -21,6 +21,8 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import MenuItem from '@material-ui/core/MenuItem';
 
+import '../static/css/main.css';
+
 
 function CoursePage() {
     const [courseList, setCourseList] = useState([]);
@@ -84,26 +86,19 @@ function CoursePage() {
 
     const useStyles = makeStyles({
         table: {
-            minWidth: 700,
-        },
+            minWidth: 1000,
+        }, 
+        tablecontainer: {
+            width: 'fit-content',
+            padding: '30px'
+        }
     });
 
     const classes = useStyles();
 
-    const tableStyle = {
-        width: 'fit-content',
-        margin: '40px'
-    }
-
-    const container = {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center', 
-    }
-
     return (
-        <div style={container}>
-            <div style={tableStyle}>
+        <div className="page-container">
+            <div className={classes.tablecontainer}>
                 <TableContainer component={Paper}>
                     <Table className={classes.table} aria-label="customized table">
                         <TableHead>

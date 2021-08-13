@@ -18,6 +18,10 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+import { Link } from 'react-router-dom';
+
+import '../static/css/main.css';
+
 
 
 function UserPage() {
@@ -79,26 +83,19 @@ function UserPage() {
 
     const useStyles = makeStyles({
         table: {
-            minWidth: 700,
+            minWidth: 1000,
+        }, 
+        tablecontainer: {
+            width: 'fit-content',
+            padding: '30px'
         }
     });
 
     const classes = useStyles();
-    
-    const tableStyle = {
-        width: 'fit-content',
-        margin: '40px'
-    }
-
-    const container = {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center', 
-    }
 
     return (
-        <div style={container}>
-            <div style={tableStyle}>
+        <div className="page-container">
+            <div className={classes.tablecontainer}>
                 <TableContainer component={Paper}>
                     <Table className={classes.table} aria-label="customized table">
                         <TableHead>
@@ -110,9 +107,14 @@ function UserPage() {
                         </TableHead>
                         <TableBody>
                             {userList.map(user => {
+                                const userID_url = "/users/" + user.id;
                                 return(
                                 <TableRow>
-                                    <StyledTableCell>{user.firstname + " " + user.surname}</StyledTableCell>
+                                    <StyledTableCell>
+                                        <Button component={Link} to={userID_url} variant="contained" color="primary">
+                                            {user.firstname + " " + user.surname}
+                                        </Button>
+                                    </StyledTableCell>
                                     <StyledTableCell>{user.homecourse}</StyledTableCell>
                                     <StyledTableCell>{user.hcp}</StyledTableCell>
                                 </TableRow>
@@ -123,7 +125,7 @@ function UserPage() {
                 </TableContainer>
             </div>
 
-            <div>
+            <div className={classes.d}>
                 <Button variant="contained" color="primary" onClick={handleClickOpen}>
                     Add new user
                 </Button>
