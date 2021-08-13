@@ -8,6 +8,7 @@ class User(models.Model):
     surname = models.CharField(max_length=30)
     homecourse = models.CharField(max_length=30)
     hcp = models.DecimalField(max_digits=3, decimal_places=1)
+    calculated_hcp = models.BooleanField(blank=True,null=True)
 
     def __str__(self):
         return self.firstname + " " + self.surname
@@ -15,25 +16,18 @@ class User(models.Model):
     def save(self,*args,**kwargs):
         super(User,self).save(*args,**kwargs)
         round_query = Round.objects.filter(player__pk=self.id)
-        f = open('test.txt','w')
-        f.write(str(len(round_query)))
-        i = 0
-        if len(round_query) >= 20 and i==0:
-            i +=1
+        if len(round_query) >= 20 and not self.calculated_hcp:
             hcp_score_list = []
             for round in round_query:
                 hcp_score_list.append(round.score_hcp)
-            hcp_score_list = hcp_score_list[:20]
-            f.write(str(hcp_score_list))
-            hcp_score_sum = sum(hcp_score_list)
-            f.write(str(hcp_score_sum))
-            best_scores_hcp = sorted(hcp_score_list)[-8:]
-            f.write(str(best_scores_hcp))
-            f.write(str(sum(best_scores_hcp)/8))
+            hcp_score_list = hcp_score_list[len(hcp_score_list)-20:]
+            # hcp_score_sum = sum(hcp_score_list)
+            # sorted_scores = sorted(hcp_score_list)
+            best_scores_hcp = sorted(hcp_score_list)[:8]
             self.hcp = sum(best_scores_hcp)/8
+            self.calculated_hcp = True
             self.save()
             
-        f.close()
 
 
 class Course(models.Model):
@@ -62,4 +56,5 @@ class Round(models.Model):
             round.score_hcp = self.score_hcp
             round.save()
             player = User.objects.get(id=self.player.id)
+            player.calculated_hcp=False
             player.save()
