@@ -35,7 +35,7 @@ function NavBar() {
             <MenuIcon />
           </IconButton> */}
           
-          <Typography variant="h6" className={classes.title}>
+          <Typography  variant="h6" className={classes.title}>
             <Button component={Link} to="/" color="inherit">Archaeopteryx</Button>
           </Typography>
 

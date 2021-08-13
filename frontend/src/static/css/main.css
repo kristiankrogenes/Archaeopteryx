@@ -1,0 +1,11 @@
+
+.main-container {
+    background-color: #ffffff;
+    min-height: 100vh;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
