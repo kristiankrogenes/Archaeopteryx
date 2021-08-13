@@ -157,7 +157,6 @@ function ScorePage() {
                             <th>{score.player}</th>
                             <th>{score.course}</th>
                             <th>{score.score_hcp}</th>
-
                         </tr>
                         )
                     })}
