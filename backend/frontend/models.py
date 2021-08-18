@@ -16,17 +16,63 @@ class User(models.Model):
     def save(self,*args,**kwargs):
         super(User,self).save(*args,**kwargs)
         round_query = Round.objects.filter(player__pk=self.id)
-        if len(round_query) >= 20 and not self.calculated_hcp:
+        if not self.calculated_hcp:
             hcp_score_list = []
             for round in round_query:
                 hcp_score_list.append(round.score_hcp)
-            hcp_score_list = hcp_score_list[len(hcp_score_list)-20:]
-            # hcp_score_sum = sum(hcp_score_list)
-            # sorted_scores = sorted(hcp_score_list)
-            best_scores_hcp = sorted(hcp_score_list)[:8]
-            self.hcp = sum(best_scores_hcp)/8
-            self.calculated_hcp = True
-            self.save()
+            if len(round_query) <= 3:
+                self.hcp = min(hcp_score_list)-2
+                self.calculated_hcp = True
+                self.save()
+            elif len(round_query) == 4:
+                self.hcp = min(hcp_score_list)-1
+                self.calculated_hcp = True
+                self.save()
+            elif len(round_query) == 5:
+                self.hcp = min(hcp_score_list)
+                self.calculated_hcp = True
+                self.save()
+            elif len(round_query) == 6:
+                best_scores = sorted(hcp_score_list)[:2]
+                self.hcp = sum(best_scores)/2 - 1
+                self.calculated_hcp = True
+                self.save()
+            elif len(round_query) in range(7,9):
+                best_scores = sorted(hcp_score_list)[:2]
+                self.hcp = sum(best_scores)/2
+                self.calculated_hcp = True
+                self.save() 
+            elif len(round_query) in range(9,12):
+                best_scores = sorted(hcp_score_list)[:3]
+                self.hcp = sum(best_scores)/3
+                self.calculated_hcp = True
+                self.save() 
+            elif len (round_query) in range(12,15):
+                best_scores = sorted(hcp_score_list)[:4]
+                self.hcp = sum(best_scores)/4
+                self.calculated_hcp = True
+                self.save()
+            elif len(round_query) in range(15,17):
+                best_scores = sorted(hcp_score_list)[:5]
+                self.hcp = sum(best_scores)/5
+                self.calculated_hcp = True
+                self.save()
+            elif len(round_query) in range(17,19):
+                best_scores = sorted(hcp_score_list)[:6]
+                self.hcp = sum(best_scores)/6
+                self.calculated_hcp = True
+                self.save()
+            elif len(round_query) == 19:
+                best_scores = sorted(hcp_score_list)[:7]
+                self.hcp = sum(best_scores)/7
+                self.calculated_hcp = True
+                self.save()
+            elif len(round_query) >= 20:
+                hcp_score_list = hcp_score_list[len(hcp_score_list)-20:]
+                best_scores_hcp = sorted(hcp_score_list)[:8]
+                self.hcp = sum(best_scores_hcp)/8
+                self.calculated_hcp = True
+                self.save()
             
 
 
